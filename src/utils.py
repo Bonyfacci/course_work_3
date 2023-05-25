@@ -10,7 +10,7 @@ def read_file(file_name):
 def last_operations(operations):
     five_operations = []
     for i in operations:
-        if 'date' in i and 'state' in i and 'from' != None and i['state'] == 'EXECUTED':
-            five_operations.append(i['date'])
-    five_operations.sort()
+        if 'date' in i and 'state' in i and 'from' in i and i['state'] == 'EXECUTED':
+            five_operations.append(i)
+    five_operations = sorted(five_operations, key=lambda d: d['date'])
     return five_operations[-6:-1]
