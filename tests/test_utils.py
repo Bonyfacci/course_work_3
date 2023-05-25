@@ -23,3 +23,14 @@ def test_last_operations(operations, expected):
 def test_date_processing():
     with pytest.raises(ValueError):
         utils.date_processing("test")
+
+
+@pytest.mark.parametrize('operations, expected', [
+    ([], None),
+])
+def test_information_output(operations, expected):
+    assert utils.information_output(operations) == expected
+    with pytest.raises(TypeError):
+        utils.information_output("test")
+        utils.information_output(([1, 2]))
+        utils.information_output((['1', '2']))
