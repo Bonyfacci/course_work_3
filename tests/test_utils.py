@@ -52,7 +52,7 @@ def test_read_file():
 def test_last_operations(operations, expected):
     assert utils.last_operations(operations) == expected
     with pytest.raises(TypeError):
-        utils.last_operations() == []
+        utils.last_operations()
 
 
 def test_date_processing():
