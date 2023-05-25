@@ -3,26 +3,46 @@ import datetime
 
 
 def read_file(file_name):
+    """
+    Читает *.json файлы.
+    :param file_name: *.json
+    :return: text file
+    """
     with open(file_name, "r", encoding="utf-8") as file:
         operations = json.load(file)
     return operations
 
 
 def last_operations(operations):
+    """
+    Сортирует операции по датам и возващает последние 5 операций.
+    :param operations: list of operations
+    :return: list of operations
+    """
     five_operations = []
     for i in operations:
         if 'date' in i and 'state' in i and 'from' in i and i['state'] == 'EXECUTED':
             five_operations.append(i)
     five_operations = sorted(five_operations, key=lambda d: d['date'])
-    return five_operations[-6:-1]
+    return five_operations[-5:]
 
 
 def date_processing(date):
+    """
+    Обрабатывает формат даты
+    :param date: str, '%Y-%m-%dT%H:%M:%S.%f'
+    :return: str, '%d.%m.%Y'
+    """
     data = datetime.datetime.strptime(' '.join(date.split('T')), '%Y-%m-%d %H:%M:%S.%f')
     return data.date().strftime('%d.%m.%Y')
 
 
 def information_output(list_operations):
+    """
+    Выдаёт информацию по операциям.
+    :param list_operations: list of operations
+    :return: str, (data, description, operation_from, operation_to, amount, currency)
+    """
     for i in list_operations:
         data = date_processing(i['date'])
         description = i['description']
