@@ -14,7 +14,7 @@ def last_operations(operations):
         if 'date' in i and 'state' in i and 'from' in i and i['state'] == 'EXECUTED':
             five_operations.append(i)
     five_operations = sorted(five_operations, key=lambda d: d['date'])
-    return five_operations[-6:-1]
+    return five_operations[-5:]
 
 
 def date_processing(date):
