@@ -1,4 +1,5 @@
 import json
+import datetime
 
 
 def read_file(file_name):
@@ -14,3 +15,8 @@ def last_operations(operations):
             five_operations.append(i)
     five_operations = sorted(five_operations, key=lambda d: d['date'])
     return five_operations[-6:-1]
+
+
+def date_processing(date):
+    data = datetime.datetime.strptime(' '.join(date.split('T')), '%Y-%m-%d %H:%M:%S.%f')
+    return data.date().strftime('%d.%m.%Y')
