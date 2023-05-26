@@ -62,7 +62,7 @@ def test_date_processing():
 
 
 @pytest.mark.parametrize('operations, expected', [
-    ([], None),
+    ([], ''),
     ([{"date": "2019-06-30T15:11:53.136004",
     "operationAmount": {
       "amount": "95860.47",
@@ -73,7 +73,10 @@ def test_date_processing():
     "description": "Перевод со счета на счет",
     "from": "Счет 59956820797131895975",
     "to": "Счет 43475624104328495820"
-  }], None)
+  }], '30.06.2019 Перевод со счета на счет\n'
+ 'Счет 5995 68** **** 9597 -> Счет **9582\n'
+ '95860.47 руб.\n'
+ '\n')
 ])
 def test_information_output(operations, expected):
     assert utils.information_output(operations) == expected
