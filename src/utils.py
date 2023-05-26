@@ -43,6 +43,7 @@ def information_output(list_operations):
     :param list_operations: list of operations
     :return: str, (data, description, operation_from, operation_to, amount, currency)
     """
+    info = ''
     for i in list_operations:
         data = date_processing(i['date'])
         description = i['description']
@@ -55,6 +56,9 @@ def information_output(list_operations):
         amount = i['operationAmount']['amount']
         currency = i['operationAmount']['currency']['name']
 
-        print( f'{data} {description}\n' \
-               f'{operation_from} -> {operation_to}\n' \
-               f'{amount} {currency}\n')
+        info += data + ' ' + description + '\n'
+        info += operation_from + ' -> ' + operation_to + '\n'
+        info += amount + ' ' + currency + '\n'*2
+
+    return info
+
